@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+<title>Registro de Casas</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#eef5ff;
+padding:40px;
+}
+
+input{
+width:250px;
+height:30px;
+margin:5px;
+}
+
+select{
+width:260px;
+height:35px;
+margin:5px;
+}
+
+button{
+width:260px;
+height:40px;
+background:#2c7be5;
+color:white;
+border:none;
+border-radius:5px;
+margin-top:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Registro de Casas y Habitantes</h2>
+
+<input id="casa" placeholder="Número de Casa">
+
+<br>
+
+<input id="nombre" placeholder="Nombre del Habitante">
+
+<br>
+
+<select id="tipo">
+
+<option value="PROPIETARIO">Propietario</option>
+<option value="INQUILINO">Inquilino</option>
+
+</select>
+
+<br>
+
+<input id="telefono" placeholder="Teléfono">
+
+<br>
+
+<input id="correo" placeholder="Correo">
+
+<br>
+
+<input id="cuota" placeholder="Cuota mensual">
+
+<br>
+
+<button onclick="guardar()">Guardar</button>
+
+<script>
+
+async function guardar(){
+
+let data = {
+
+casa:document.getElementById("casa").value,
+nombre:document.getElementById("nombre").value,
+tipo:document.getElementById("tipo").value,
+telefono:document.getElementById("telefono").value,
+correo:document.getElementById("correo").value,
+cuota:document.getElementById("cuota").value
+
+}
+
+await fetch("/guardarCasa",{
+
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify(data)
+
+})
+
+alert("Guardado correctamente")
+
+}
+
+</script>
+
+</body>
+</html>

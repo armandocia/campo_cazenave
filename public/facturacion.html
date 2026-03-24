@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+<title>Facturación</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#eef5ff;
+padding:40px;
+}
+
+button{
+width:250px;
+height:50px;
+background:#2c7be5;
+color:white;
+border:none;
+border-radius:5px;
+font-size:16px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Generar Facturas Mensuales</h2>
+
+<button onclick="generar()">GENERAR FACTURAS DEL MES</button>
+
+<script>
+
+async function generar(){
+
+let r = await fetch("/generarFacturas")
+
+let d = await r.json()
+
+alert("Facturas creadas: " + d.total)
+
+}
+
+</script>
+
+</body>
+
+</html>

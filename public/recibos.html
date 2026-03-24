@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+<title>Recibos</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#eef5ff;
+padding:40px;
+}
+
+input{
+width:250px;
+height:30px;
+margin:5px;
+}
+
+button{
+width:260px;
+height:40px;
+background:#2c7be5;
+color:white;
+border:none;
+border-radius:5px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Registrar Pago</h2>
+
+<input id="habitante" placeholder="ID Habitante">
+
+<br>
+
+<input id="monto" placeholder="Monto pagado">
+
+<br>
+
+<button onclick="pagar()">Registrar Pago</button>
+
+<script>
+
+async function pagar(){
+
+let habitante=document.getElementById("habitante").value
+let monto=document.getElementById("monto").value
+
+await fetch("/pagar",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({habitante,monto})
+
+})
+
+alert("Pago registrado")
+
+}
+
+</script>
+
+</body>
+
+</html>

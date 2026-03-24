@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pagos</title>
+
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <h2>CAZENAVE</h2>
+
+  <a href="dashboard.html">Dashboard</a>
+  <a href="pagos.html">Pagos</a>
+</div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <h3>Gestión de Pagos</h3>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <div class="card">
+    <h3>Registrar Pago</h3>
+
+    <input type="number" id="habitante" placeholder="ID Habitante"><br><br>
+    <input type="number" id="monto" placeholder="Monto"><br><br>
+
+    <button onclick="registrarPago()">Guardar Pago</button>
+  </div>
+
+  <div class="card">
+    <h3>Lista de Pagos</h3>
+
+    <table border="1" width="100%" id="tablaPagos">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Habitante</th>
+          <th>Monto</th>
+          <th>Fecha</th>
+          <th>PDF</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+  </div>
+
+</div>
+
+<script src="js/pagos.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+const bcrypt = require("bcrypt");
+
+app.post("/login", async (req,res)=>{
+  const {usuario,clave} = req.body;
+
+  try{
+    const result = await pool.query(
+      "SELECT * FROM usuarios WHERE usuario=$1",
+      [usuario]
+    );
+
+    if(result.rows.length === 0){
+      return res.json({ok:false});
+    }
+
+    const user = result.rows[0];
+
+    const valido = await bcrypt.compare(clave, user.clave);
+
+    if(valido){
+      res.json({
+        ok:true,
+        usuario:user.usuario,
+        rol:user.rol
+      });
+    } else {
+      res.json({ok:false});
+    }
+
+  }catch(err){
+    console.error(err);
+    res.status(500).json({error:"Error login"});
+  }
+});

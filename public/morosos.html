@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+<title>Casas Morosas</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#eef5ff;
+padding:40px;
+}
+
+table{
+border-collapse:collapse;
+width:100%;
+background:white;
+}
+
+td,th{
+border:1px solid #ccc;
+padding:10px;
+}
+
+th{
+background:#2c7be5;
+color:white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Casas con Facturas Pendientes</h2>
+
+<table id="tabla">
+
+<tr>
+<th>Casa</th>
+<th>Habitante</th>
+<th>Mes</th>
+<th>Año</th>
+<th>Monto</th>
+</tr>
+
+</table>
+
+<script>
+
+async function cargar(){
+
+let r = await fetch("/morosos")
+let datos = await r.json()
+
+let tabla = document.getElementById("tabla")
+
+datos.forEach(d=>{
+
+tabla.innerHTML += `
+<tr>
+<td>${d.numero_casa}</td>
+<td>${d.nombre}</td>
+<td>${d.mes}</td>
+<td>${d.anio}</td>
+<td>${d.monto}</td>
+</tr>
+`
+
+})
+
+}
+
+cargar()
+
+</script>
+
+</body>
+
+</html>

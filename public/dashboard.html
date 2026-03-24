@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+const usuario = localStorage.getItem("usuario");
+
+if(!usuario){
+  window.location.href = "login.html";
+}
+</script>
+  <link rel="manifest" href="manifest.json">   
+  <title>Dashboard</title>
+
+  <link rel="stylesheet" href="css/estilos.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js')
+    .then(() => console.log('SW registrado'));
+}
+</script>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <h2>CAZENAVE</h2>
+
+  <a href="dashboard.html">Dashboard</a>
+  <a href="#">Pagos</a>
+  <a href="#">Habitantes</a>
+  <a href="#">Reportes</a>
+</div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <h3>Panel de Control</h3>
+</div>
+
+<!-- MAIN -->
+
+<div class="stats">
+  <div class="stat ingresos">
+    <h4>Ingresos</h4>
+    <span id="ingresos">0</span>
+  </div>
+
+  <div class="stat morosidad">
+    <h4>Morosos</h4>
+    <span id="morosidad">0</span>
+  </div>
+
+  <div class="stat historial">
+    <h4>Saldo Histórico</h4>
+    <span id="historico">0</span>
+  </div>
+</div>
+
+  <!-- GRÁFICAS -->
+  <div class="card">
+    <h3>Ingresos</h3>
+    <canvas id="graficoIngresos"></canvas>
+  </div>
+
+  <div class="card">
+    <h3>Morosidad</h3>
+    <canvas id="graficoMorosidad"></canvas>
+  </div>
+
+  <div class="card">
+    <h3>Histórico</h3>
+    <canvas id="graficoHistorico"></canvas>
+  </div>
+
+</div>
+
+<script src="js/dashboard.js"></script>
+
+</body>
+</html>

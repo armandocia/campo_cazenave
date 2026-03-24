@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+<title>Estado de Cuenta</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#eef5ff;
+padding:40px;
+}
+
+input{
+width:300px;
+height:35px;
+font-size:16px;
+}
+
+button{
+height:38px;
+background:#2c7be5;
+color:white;
+border:none;
+padding:0 20px;
+}
+
+table{
+border-collapse:collapse;
+width:100%;
+margin-top:30px;
+background:white;
+}
+
+td,th{
+border:1px solid #ccc;
+padding:10px;
+}
+
+th{
+background:#2c7be5;
+color:white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Estado de Cuenta</h2>
+
+<input id="busqueda" placeholder="Casa o nombre">
+
+<button onclick="buscar()">Buscar</button>
+
+<table id="tabla">
+
+<tr>
+<th>Casa</th>
+<th>Habitante</th>
+<th>Mes</th>
+<th>Año</th>
+<th>Monto</th>
+<th>Estado</th>
+</tr>
+
+</table>
+
+<script>
+
+async function buscar(){
+
+let b=document.getElementById("busqueda").value
+
+let r=await fetch("/estadoCuenta/"+b)
+
+let datos=await r.json()
+
+let tabla=document.getElementById("tabla")
+
+tabla.innerHTML=`
+<tr>
+<th>Casa</th>
+<th>Habitante</th>
+<th>Mes</th>
+<th>Año</th>
+<th>Monto</th>
+<th>Estado</th>
+</tr>
+`
+
+datos.forEach(d=>{
+
+tabla.innerHTML+=`
+<tr>
+<td>${d.numero_casa}</td>
+<td>${d.nombre}</td>
+<td>${d.mes}</td>
+<td>${d.anio}</td>
+<td>${d.monto}</td>
+<td>${d.estado}</td>
+</tr>
+`
+
+})
+
+}
+
+</script>
+
+</body>
+
+</html>
